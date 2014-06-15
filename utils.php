@@ -29,9 +29,7 @@ class Utility
     public static function login_success($sqlRow)
     {
         $array = array('status' => 1,
-            'id' => $sqlRow['id'],
             'email' => $sqlRow['email'],
-            'password' => $sqlRow['password'],
             'avatar' => $sqlRow['avatar'],
             'first_name' => $sqlRow['first_name'],
             'last_name' => $sqlRow['last_name']);

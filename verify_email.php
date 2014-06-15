@@ -16,7 +16,7 @@ if (!isset($_GET["verification_code"]))
 }
 $verificationCode = $_GET["verification_code"];
 
-$result = mysqli_query($con, "SELECT * FROM `user` WHERE email_verification_key = '$verificationCode' LIMIT 1");
+$result = mysqli_query($con, "SELECT verified FROM `user` WHERE email_verification_key = '$verificationCode' LIMIT 1");
 if ($result)
 {
     $row = mysqli_fetch_array($result);
