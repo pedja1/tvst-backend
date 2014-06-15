@@ -6,7 +6,7 @@
  * Time: 1:16 PM
  */
 require_once('db_utils.php');
-require_once('utils.php');
+require_once("utils.php");
 if(isset($_COOKIE['user_auth_key']))
 {
     $user_auth_key = $_COOKIE['user_auth_key'];
@@ -21,15 +21,15 @@ if(isset($_COOKIE['user_auth_key']))
         }
         else
         {
-            echo error("User not authorized(db)", "user_not_authorized");
+            echo Utility::error("User not authorized(db)", "user_not_authorized");
         }
     }
     else
     {
-        echo error("Server error, please try again later.", "database_error");
+        echo Utility::error("Server error, please try again later.", "database_error");
     }
 }
 else
 {
-    echo error("User not authorized(cookie)", "user_not_authorized");
+    echo Utility::error("User not authorized(cookie)", "user_not_authorized");
 }
