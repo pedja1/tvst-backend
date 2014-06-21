@@ -29,10 +29,10 @@ class Utility
     public static function login_success($sqlRow)
     {
         $array = array('status' => 1,
-            'email' => $sqlRow['email'],
+            'email' => $sqlRow['email']/*,
             'avatar' => $sqlRow['avatar'],
             'first_name' => $sqlRow['first_name'],
-            'last_name' => $sqlRow['last_name']);
+            'last_name' => $sqlRow['last_name']*/);
         return json_encode($array);
     }
 
@@ -40,10 +40,10 @@ class Utility
     {
         $array = array('status' => 1,
             'message' => "Registration successful. Check your email for instructions on how to verify your account.");
-        if($warning != null)
+        /*if($warning != null)
         {
             array_push($array, array('warning' => $warning));
-        }
+        }*/
         return json_encode($array);
     }
 

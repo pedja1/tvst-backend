@@ -16,7 +16,7 @@ if(!isset($_POST["password"]))
 }
 $email = $_POST["email"];
 $password = $_POST["password"];
-$result = mysqli_query($con, "SELECT id, email, verified, user_auth_key, avatar, first_name, last_name FROM `user` WHERE email = '$email' AND password = '$password' LIMIT 1");
+$result = mysqli_query($con, "SELECT id, email, verified, user_auth_key FROM `user` WHERE email = '$email' AND password = '$password' LIMIT 1");
 if($result)
 {
     $row = mysqli_fetch_array($result);

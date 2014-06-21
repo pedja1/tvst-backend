@@ -28,11 +28,11 @@ if (strlen($_POST["password"]) < 6)
 }
 $email = $_POST["email"];
 $password = $_POST["password"];
-$first_name = isset($_POST["first_name"]) ? $_POST["first_name"] : NULL;
-$last_name = isset($_POST["last_name"]) ? $_POST["last_name"] : NULL;
-$avatar = "images/avatars/default_avatar.png";
+//$first_name = isset($_POST["first_name"]) ? $_POST["first_name"] : NULL;
+//$last_name = isset($_POST["last_name"]) ? $_POST["last_name"] : NULL;
+//$avatar = "images/avatars/default_avatar.png";
 
-if (isset($_FILES['file']))
+/*if (isset($_FILES['file']))
 {
     $allowedExts = array("jpeg", "jpg", "png");
     $temp = explode(".", $_FILES["file"]["name"]);
@@ -75,7 +75,7 @@ if (isset($_FILES['file']))
         echo Utility::error("File extension is not valid. Valid types are: 'jpeg, jpg and png'", "invalid_file_type");
         die();
     }
-}
+}*/
 
 $result = mysqli_query($con, "SELECT * FROM `user` WHERE email = '$email' LIMIT 1");
 if ($result)
@@ -84,14 +84,11 @@ if ($result)
     if ($row == null)
     {
         $verificationCode = Utility::random_string();
-        $avatar = Utility::$URL_ROOT.$avatar;
+        //$avatar = Utility::$URL_ROOT.$avatar;
         $stmt = mysqli_prepare($con, "INSERT INTO `user`
-         SET email = ?, password = ?, first_name = ?, last_name = ?, avatar = ?, email_verification_key = ?");
-        mysqli_stmt_bind_param($stmt, "ssssss", $email, $password, $first_name, $last_name, $avatar, $verificationCode);
+         SET email = ?, password = ?, email_verification_key = ?");
+        mysqli_stmt_bind_param($stmt, "sss", $email, $password, $verificationCode);
         $insertResult = mysqli_stmt_execute($stmt);
-        /*$insertResult = mysqli_query($con, "INSERT INTO `user`
-         (email, password, first_name, last_name, avatar, email_verification_key)
-         VALUES '$email', '$password', '$first_name', '$last_name', '$avatar', '$verificationCode'");*/
         if($insertResult)
         {
             if(MailUtility::sendVerificationEmail($email, $verificationCode))
